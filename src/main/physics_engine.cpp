@@ -13,7 +13,7 @@ namespace simphys {
 
   void PhysicsEngine::tick(fseconds dt) {
 
-    if (dt - lastTick > fseconds{0.008}) {
+    if (dt - lastTick > fseconds{0.001}) {
       lastTick = dt;
       //auto objects = sw->getObjects();
       //for (auto& obj : objects) {
@@ -26,7 +26,8 @@ namespace simphys {
 	sfg->update(p, dt);
 
 	// really cheap way of testing for collisions with ground.
-	p->integrate(dt);
+	if (p->getPosition().getY() > 0.0f)
+	  p->integrate(dt);
       }
     } 
   }
