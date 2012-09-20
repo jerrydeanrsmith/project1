@@ -20,7 +20,6 @@ namespace simphys {
       for (auto& r : reg) {
 	auto sfg = r.first;
 	auto p = r.second;
-	//auto p = obj->getState();
 	
 	// apply the spring force.
 	sfg->update(p, dt);

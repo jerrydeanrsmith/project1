@@ -56,7 +56,7 @@ namespace simphys {
       return;
     }
     auto dt = duration.count();
-    pos = pos + dt * vel + 0.5f * acc * dt * dt;
+    pos = pos + dt * vel;
 
     vec3 resultantAcc = acc;
     resultantAcc = resultantAcc + (invMass * accumulatedForces);

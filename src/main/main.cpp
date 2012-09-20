@@ -39,12 +39,12 @@ int main(int argc, char **argv) {
   auto objState = obj_ptr->getState();
   objState->setPosition(simphys::vec3{100, 500.5, 0});
   objState->setVelocity(simphys::vec3{200.0, 60.0, 0});
-  //objState->setAcceleration(simphys::vec3{0, -10, 0});
+  objState->setAcceleration(simphys::vec3{0, -1, 0});
   objState->setMass(1.0);
   objState->setDamping(0.8);
 
   // add spring force generator
-  auto springy = std::make_shared<simphys::SpringForce>(anchor_state->getPosition(), 0.01, 300.0);
+  auto springy = std::make_shared<simphys::SpringForce>(anchor_state->getPosition(), 1, 300.0);
   (sim.getPhysicsEngine())->addSpringPair(springy, objState);
 
   // add objects to the world.

@@ -23,6 +23,9 @@ namespace simphys {
   void SpringForce::update(shared_ptr<Particle> p, fsecond dt) {
     auto dir = p->getPosition() - *anchor;
     auto norm = dir.norm();
+    if (norm < restLength) {
+      return;
+    }
     norm = (restLength - norm) * springConstant;
     p->applyForce(dir.normalized() * norm);
   }  
