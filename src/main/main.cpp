@@ -11,6 +11,7 @@
 #include "simphys/simobject2D.h"
 #include "simphys/particle.h"
 #include "simphys/vec3.h"
+#include "simphys/spring_force.h"
 
 int main(int argc, char **argv) {
 
@@ -30,9 +31,16 @@ int main(int argc, char **argv) {
   simphys::SimObject2D testObject(p,s);
   auto obj_ptr = std::make_shared<simphys::SimObject2D>(testObject);
   auto objState = testObject.getState();
-  objState->setPosition(simphys::vec3{10, 20, 0});
-  objState->setVelocity(simphys::vec3{40.0, 60.0, 0});
+  objState->setPosition(simphys::vec3{420, 500.5, 0});
+  objState->setVelocity(simphys::vec3{-50.0, 50.0, 0});
   objState->setAcceleration(simphys::vec3{0, -9.8, 0});
+  objState->setMass(1.0);
+  objState->setDamping(0.8);
+
+  // add spring force generator
+  auto springy = std::make_shared<simphys::SpringForce>(simphys::vec3{420.0f, 500.0f, 0.0f}, 0.1, 10.0);
+  
+  (sim.getPhysicsEngine())->addSpringPair(springy, objState);
 
   // add object to the world.
   world_ptr->add(obj_ptr);

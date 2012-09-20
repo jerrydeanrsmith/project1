@@ -14,10 +14,8 @@
 
 namespace simphys {
   
-  class Particle;
-  
-  typedef std::duration<float, std::ratio<1,1> > fsecond;
-
+  class Particle;  
+  typedef std::chrono::duration<float, std::ratio<1,1> > fsecond;
   using std::shared_ptr;
   
   class ForceGenerator {
@@ -26,7 +24,8 @@ namespace simphys {
        Override this function to apply a specific type of force to the
        given particle.
     */
-    virtual void update(shared_ptr<Particle> p, fsecond dt);
+    virtual void update(shared_ptr<Particle> p, fsecond dt)=0;
+
   };
     
 }

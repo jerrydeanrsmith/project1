@@ -52,23 +52,17 @@ namespace simphys {
   }
 
   void Particle::integrate(fseconds duration) {
-
-    // don't move objects that have "infinite mass."
     if (invMass <= 0.0f) {
       return;
     }
-
-    // update position using Euler integration
-    pos = pos + duration.count() * vel;
+    auto dt = duration.count();
+    pos = pos + dt * vel + 0.5f * acc * dt * dt;
 
     vec3 resultantAcc = acc;
     resultantAcc = resultantAcc + (invMass * accumulatedForces);
 
-    // update velocity using Euler integration
-    vel = vel + duration.count() * resultantAcc;
-
-    // incorporate damping
-    vel = vel * damping;
+    vel = vel + 0.5 * dt * resultantAcc;
+    vel = vel * std::pow(damping, dt);
 
     clearForces();
 
