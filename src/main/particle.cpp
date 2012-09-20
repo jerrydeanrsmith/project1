@@ -61,7 +61,7 @@ namespace simphys {
     vec3 resultantAcc = acc;
     resultantAcc = resultantAcc + (invMass * accumulatedForces);
 
-    vel = vel + 0.5 * dt * resultantAcc;
+    vel = vel + dt * resultantAcc;
     vel = vel * std::pow(damping, dt);
 
     clearForces();

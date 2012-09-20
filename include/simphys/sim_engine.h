@@ -9,6 +9,7 @@
 #include "physics_engine.h"
 #include "clock.h"
 
+#include <memory>
 #include <chrono>
 
 namespace simphys {

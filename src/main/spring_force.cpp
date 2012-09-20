@@ -24,9 +24,7 @@ namespace simphys {
     auto dir = p->getPosition() - *anchor;
     auto norm = dir.norm();
     norm = (restLength - norm) * springConstant;
-    p->applyForce(dir.normalized() * norm - 0.8 * p->getVelocity());
-  }
-
-  
+    p->applyForce(dir.normalized() * norm);
+  }  
 
 }
