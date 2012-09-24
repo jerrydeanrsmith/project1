@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
   sim.setClock(clock_ptr);
 
   // create a world to simulate
-  auto world_ptr = std::make_shared<simphys::SimWorld>(); 
+  auto world_ptr = std::make_shared<simphys::SimWorld>();
   sim.setSimWorld(world_ptr);
 
   // create and initialize the anchor point
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
   auto objState = obj_ptr->getState();
   objState->setPosition(simphys::vec3{100, 500.5, 0});
   objState->setVelocity(simphys::vec3{200.0, 60.0, 0});
-  objState->setAcceleration(simphys::vec3{0, -1, 0});
+  objState->setAcceleration(simphys::vec3{0, -9.8, 0});
   objState->setMass(1.0);
   objState->setDamping(0.8);
 
