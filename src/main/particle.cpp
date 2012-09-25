@@ -58,15 +58,13 @@ namespace simphys {
       return;
     }
 
-    // update position using Euler integration
-    pos = pos + duration.count() * vel;
-
-    vec3 resultantAcc = acc;
-    resultantAcc = resultantAcc + (invMass * accumulatedForces);
-
-    // update velocity using Euler integration
-    vel = vel + duration.count() * resultantAcc;
-
+    //update velocity using Verlet
+    vel = vel + 1.0f/2.0f*acc*duration.count();
+    // update position using Velocity Verlet
+    pos = pos + vel * duration.count();
+    vec3 resultantAcc  = (pos+duration.count())-(2.0f*pos+pos)-(duration.count());
+    // update velocity using Velocity Verlet
+    vel = vel + 1.0f/2.0f*resultantAcc*duration.count();
     // incorporate damping
     vel = vel * damping;
 
